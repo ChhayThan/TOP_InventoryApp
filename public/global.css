@@ -60,13 +60,58 @@ div.categories h2 {
 }
 
 div.content {
+  padding: 1em;
   grid-column: span 3;
+  display: flex;
+  flex-direction: column;
+  gap: 1em;
+}
+div.content > h1 {
+  font-weight: bold;
+  font-size: 1.3em;
+}
+
+div.itemsContainer {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1em;
+}
+
+div.item {
+  padding: 1em;
+  width: 300px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+
+  border-radius: 20px;
+  box-shadow: 2px 3px 10px lightgrey;
+}
+
+div.item:hover {
+  box-shadow: 5px 3px 10px lightgrey;
+}
+
+div.itemImg img {
+  width: 100%;
+  object-fit: contain;
+}
+
+div.item a {
+  padding: 1em;
+  color: white;
+  border-radius: 10px;
+  background-color: #3895ff;
+}
+
+div.item a:hover {
+  background-color: #1868c4;
+  transition: background-color 200ms ease;
+  cursor: pointer;
 }
 
 ul li {
   margin-bottom: 10px;
-}
-
-img {
-  width: 200px;
 }
