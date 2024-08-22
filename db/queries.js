@@ -39,9 +39,11 @@ async function getVehicleTypes() {
   const { rows } = await pool.query(
     "SELECT DISTINCT vehicle_type FROM car_models ORDER BY vehicle_type"
   );
+  return rows;
 }
 
 module.exports = {
+  getAllParts,
   getModelsByBrandId,
   getModelsByBrandId,
   getPartsByModel,

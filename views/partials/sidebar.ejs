@@ -1,0 +1,28 @@
+<div class="sidebar">
+  <h1>Menu</h1>
+  <div class="categories">
+    <a href="/">All Categories</a>
+
+    <% if (brand_categories) { %>
+    <ul class="brand_categories">
+      <% brand_categories.forEach((category) => { %>
+      <li>
+        <a href="/category/<%= category.brand_id %>"
+          ><%= category.brand_name %></a
+        >
+      </li>
+      <% }) %>
+    </ul>
+    <% } %> <% if (vehicleType_categories) { %>
+    <ul class="vehicleType_categories">
+      <% vehicleType_categories.forEach((category) => { %>
+      <li>
+        <a href="/category/<%= category.vehicle_type %>"
+          ><%= category.vehicle_type %></a
+        >
+      </li>
+      <% }) %>
+    </ul>
+    <% } %>
+  </div>
+</div>
