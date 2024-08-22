@@ -4,7 +4,8 @@
     <a href="/">All Categories</a>
 
     <% if (brand_categories) { %>
-    <ul class="brand_categories">
+    <h2>Brands</h2>
+    <ul class="category brand_categories">
       <% brand_categories.forEach((category) => { %>
       <li>
         <a href="/category/<%= category.brand_id %>"
@@ -14,7 +15,8 @@
       <% }) %>
     </ul>
     <% } %> <% if (vehicleType_categories) { %>
-    <ul class="vehicleType_categories">
+    <h2>Vehicle Type</h2>
+    <ul class="category vehicleType_categories">
       <% vehicleType_categories.forEach((category) => { %>
       <li>
         <a href="/category/<%= category.vehicle_type %>"

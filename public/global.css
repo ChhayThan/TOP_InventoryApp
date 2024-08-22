@@ -1,11 +1,13 @@
 body {
   font-family: Helvetica, Arial, sans-serif;
   font-weight: 500;
-  display: flex;
-  flex-wrap: wrap;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  grid-template-rows: minmax(1fr, 100px) 1fr;
 }
 
 nav {
+  grid-column: span 4;
   padding: 1em;
   width: 100vw;
   display: flex;
@@ -31,4 +33,40 @@ nav div.search input::placeholder {
 }
 nav div.search input:hover::placeholder {
   color: rgb(171, 171, 171);
+}
+
+div.sidebar {
+  grid-column: 1 / 2;
+  padding: 2em;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+}
+div.sidebar h1 {
+  font-weight: bold;
+  font-size: 1.5em;
+}
+
+div.categories {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+div.categories h2 {
+  text-align: center;
+  font-weight: bold;
+  font-size: 1.2em;
+}
+
+div.content {
+  grid-column: span 3;
+}
+
+ul li {
+  margin-bottom: 10px;
+}
+
+img {
+  width: 200px;
 }
