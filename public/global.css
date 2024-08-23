@@ -2,12 +2,12 @@ body {
   font-family: Helvetica, Arial, sans-serif;
   font-weight: 500;
   display: grid;
-  grid-template-columns: 1fr 1fr 1fr 1fr;
+  grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
   grid-template-rows: minmax(1fr, 100px) 1fr;
 }
 
 nav {
-  grid-column: span 4;
+  grid-column: span 5;
   padding-top: 1em;
   padding-bottom: 1em;
   width: 100vw;
@@ -62,7 +62,7 @@ div.categories h2 {
 
 div.content {
   margin: 1em;
-  grid-column: span 3;
+  grid-column: span 4;
   display: flex;
   flex-direction: column;
   gap: 1em;
@@ -114,7 +114,8 @@ div.model a {
 }
 
 div.item a:hover,
-div.model a:hover {
+div.model a:hover,
+div.itemInfo form > button:hover {
   background-color: #1868c4;
   transition: background-color 200ms ease;
   cursor: pointer;
@@ -122,4 +123,63 @@ div.model a:hover {
 
 ul li {
   margin-bottom: 10px;
+}
+
+div.itemContent {
+  grid-column: span 5;
+
+  display: flex;
+  flex-direction: column;
+  gap: 1em;
+
+  padding-left: 1em;
+}
+
+div.itemContent > a {
+  font-weight: bold;
+  font-size: 1.2em;
+  margin-left: 1em;
+}
+
+div.itemContainer {
+  display: flex;
+  gap: 2em;
+
+  justify-content: center;
+}
+div.itemContent > a:hover {
+  text-decoration: underline;
+}
+div.itemContainer div.itemImg img {
+  height: 400px;
+  width: 450px;
+}
+
+div.itemInfo {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 5px;
+}
+
+div.itemInfo > h1.item_title {
+  font-weight: bold;
+  font-size: 1.2em;
+}
+div.itemInfo > h2.item_brand {
+  color: #3895ff;
+  font-weight: bold;
+}
+
+div.itemInfo > h2.item_description {
+  margin-top: 1em;
+}
+
+div.itemInfo form > button {
+  margin-top: 2em;
+  background-color: #3895ff;
+  padding: 1em;
+  color: white;
+  border: none;
+  border-radius: 10px;
 }

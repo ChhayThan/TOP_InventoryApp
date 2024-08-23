@@ -119,3 +119,15 @@ exports.getPartsByModel = async (req, res) => {
     vehicleType_categories,
   });
 };
+
+exports.getPartById = async (req, res) => {
+  const itemQuery = await db.getPartById(req.params.part_id);
+  const item = itemQuery[0];
+  const brandQuery = await db.getBrandNameById(item.brand_id);
+
+  res.render("item", {
+    title: item.part_name,
+    item,
+    brand_name: brandQuery[0].brand_name,
+  });
+};

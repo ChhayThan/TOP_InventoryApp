@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title><%= title %></title>
+    <link rel="stylesheet" href="/reset.css" />
+    <link rel="stylesheet" href="/global.css" />
+  </head>
+  <body>
+    <%- include('./partials/navBar') %>
+    <div class="itemContent">
+      <a href="/">Back Home</a>
+      <div class="itemContainer">
+        <% if (item) { %>
+        <div class="itemImg">
+          <img src="<%= item.part_imageurl %>" alt="<%= item.part_name %>" />
+        </div>
+        <div class="itemInfo">
+          <h1 class="item_title"><%= item.part_name %></h1>
+          <h2 class="item_brand"><%= brand_name %></h2>
+          <h2 class="item_price">$<%= item.part_price %></h2>
+          <h2 class="item_qty">Qty: <%= item.part_quantity %></h2>
+          <h2 class="item_description">
+            Description: <%= item.part_description %>
+          </h2>
+
+          <form action="/edit/part/<%= item.id %>" method="GET">
+            <button type="submit">Edit this item</button>
+          </form>
+        </div>
+
+        <% } else { %>
+        <p>No items available.</p>
+        <% } %>
+      </div>
+    </div>
+  </body>
+</html>
