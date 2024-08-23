@@ -72,13 +72,15 @@ div.content > h1 {
   font-size: 1.3em;
 }
 
-div.itemsContainer {
+div.itemsContainer,
+div.modelsContainer {
   display: flex;
   flex-wrap: wrap;
   gap: 1em;
 }
 
-div.item {
+div.item,
+div.model {
   padding: 1em;
   max-width: 280px;
   display: flex;
@@ -91,23 +93,28 @@ div.item {
   box-shadow: 2px 3px 10px lightgrey;
 }
 
-div.item:hover {
-  box-shadow: 5px 3px 10px lightgrey;
+div.item:hover,
+div.model:hover {
+  box-shadow: 2px 3px 20px lightgrey;
 }
 
-div.itemImg img {
+div.itemImg img,
+div.modelImg img {
   width: 100%;
+  height: 200px;
   object-fit: contain;
 }
 
-div.item a {
+div.item a,
+div.model a {
   padding: 1em;
   color: white;
   border-radius: 10px;
   background-color: #3895ff;
 }
 
-div.item a:hover {
+div.item a:hover,
+div.model a:hover {
   background-color: #1868c4;
   transition: background-color 200ms ease;
   cursor: pointer;

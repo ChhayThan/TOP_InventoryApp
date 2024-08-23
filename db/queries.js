@@ -6,14 +6,17 @@ async function getAllParts() {
 }
 
 async function getModelsByBrandId(brand_id) {
-  const { rows } = pool.query("SELECT * FROM car_models WHERE brand_id = $1");
+  const { rows } = await pool.query(
+    "SELECT * FROM car_models WHERE brand_id = $1",
+    [brand_id]
+  );
   return rows;
 }
 
 async function getPartsByModel(model_id) {
   const { rows } = await pool.query(
-    "SELECT * FROM car_parts WHERE brand_id = $1)",
-    [model_name]
+    "SELECT * FROM car_parts WHERE model_id = $1)",
+    [model_id]
   );
 
   return rows;
@@ -42,6 +45,14 @@ async function getVehicleTypes() {
   return rows;
 }
 
+async function getBrandNameById(brand_id) {
+  const { rows } = await pool.query(
+    "SELECT DISTINCT brand_name FROM car_brands WHERE id = $1",
+    [brand_id]
+  );
+  return rows;
+}
+
 module.exports = {
   getAllParts,
   getModelsByBrandId,
@@ -50,4 +61,5 @@ module.exports = {
   getModelsByVehicleType,
   getBrands,
   getVehicleTypes,
+  getBrandNameById,
 };
