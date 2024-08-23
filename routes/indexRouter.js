@@ -13,4 +13,6 @@ indexRouter.get(
   indexController.getModelsByVehicleType
 );
 
+indexRouter.get("/model/:model_id", indexController.getPartsByModel);
+
 module.exports = indexRouter;

@@ -94,3 +94,28 @@ exports.getModelsByVehicleType = async (req, res) => {
     vehicleType_categories,
   });
 };
+
+exports.getPartsByModel = async (req, res) => {
+  let brand_categories = await getBrandCategories();
+  let vehicleType_categories = await getVehicleTypesCategories();
+
+  const model_id = req.params.model_id;
+
+  const partsQuery = await db.getPartsByModel(model_id);
+  let items = [];
+  partsQuery.forEach((item) => {
+    items.push({
+      id: item.id,
+      part_name: item.part_name,
+      part_imageUrl: item.part_imageurl,
+      part_price: item.part_price,
+      part_quantity: item.part_quantity,
+    });
+  });
+  res.render("itemContent", {
+    title: `Items for model: ${model_id}`,
+    items,
+    brand_categories,
+    vehicleType_categories,
+  });
+};

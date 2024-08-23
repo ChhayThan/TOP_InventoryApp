@@ -15,7 +15,7 @@ async function getModelsByBrandId(brand_id) {
 
 async function getPartsByModel(model_id) {
   const { rows } = await pool.query(
-    "SELECT * FROM car_parts WHERE model_id = $1)",
+    "SELECT * FROM car_parts WHERE model_id = $1",
     [model_id]
   );
 
