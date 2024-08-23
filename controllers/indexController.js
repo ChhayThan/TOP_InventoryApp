@@ -46,7 +46,7 @@ exports.getHomeContent = async (req, res) => {
   });
 };
 
-exports.getBrandCategory = async (req, res) => {
+exports.getModelsByBrandCategory = async (req, res) => {
   let brand_categories = await getBrandCategories();
   let vehicleType_categories = await getVehicleTypesCategories();
   const brand_id = req.params.brand_id;
@@ -64,9 +64,32 @@ exports.getBrandCategory = async (req, res) => {
     });
   });
 
-  res.render("brandCategory", {
+  res.render("modelContent", {
     models,
     title: `${brand_names[0].brand_name} Category`,
+    brand_categories,
+    vehicleType_categories,
+  });
+};
+
+exports.getModelsByVehicleType = async (req, res) => {
+  let brand_categories = await getBrandCategories();
+  let vehicleType_categories = await getVehicleTypesCategories();
+
+  const vehicle_type = req.params.vehicle_type;
+  const modelQuery = await db.getModelsByVehicleType(vehicle_type);
+  const models = [];
+  modelQuery.forEach((model) => {
+    models.push({
+      id: model.id,
+      model_name: model.model_name,
+      model_imageUrl: model.model_imageurl,
+      model_vehicle_type: model.vehicle_type,
+    });
+  });
+  res.render("modelContent", {
+    models,
+    title: `${vehicle_type} Category`,
     brand_categories,
     vehicleType_categories,
   });
