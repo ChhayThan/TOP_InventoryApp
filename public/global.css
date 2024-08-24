@@ -132,7 +132,8 @@ div.model a {
 div.item a:hover,
 div.model a:hover,
 div.itemInfo form > button:hover,
-button#editSubmitBtn:hover {
+button#editSubmitBtn:hover,
+button.addBrandBtn:hover {
   background-color: #1868c4;
   transition: background-color 200ms ease;
   cursor: pointer;
@@ -268,5 +269,15 @@ textarea#part_description {
 
 select {
   padding: 1em;
+  border: none;
+}
+
+button.addBrandBtn {
+  align-self: flex-start;
+
+  padding: 1em;
+  color: white;
+  border-radius: 10px;
+  background-color: #3895ff;
   border: none;
 }

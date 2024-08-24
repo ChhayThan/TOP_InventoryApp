@@ -1,7 +1,12 @@
 <a href="/">Back Home</a>
-<form action="/brand" method="POST">
+<form action="/form/add/car_brands" method="POST" class="addBrand">
   <label for="brand_name">
     Brand Name:
     <input type="text" name="brand_name" id="brand_name" />
   </label>
+  <label for="brand_imageurl">
+    Brand Image Url:
+    <input type="url" name="brand_imageurl" id="brand_imageurl" />
+  </label>
+  <button type="submit" class="addBrandBtn">Add Brand Category</button>
 </form>
