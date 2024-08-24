@@ -1,0 +1,73 @@
+<form action="/edit/part/<%= item_info.id %>" method="POST">
+  <label for="part_name">
+    Part Name:
+    <input
+      type="text"
+      name="part_name"
+      id="part_name"
+      value="<%= item_info.part_name %>"
+      required
+    />
+  </label>
+  <label for="brand_name">
+    Brand Name:
+    <select name="brand_name" id="brand_name">
+      <% brand_categories.forEach((brand) => { %>
+      <option value="brand_name"
+      <% if (item_info.brand_id === brand.brand_id) { %>
+        selected
+      <% } %>
+      ><%= brand.brand_name %></option>
+      <% }) %>
+    </select>
+  </label>
+  <label for="model_name">
+    Model Name:
+    <select name="model_name" id="model_name">
+      <% model_names.forEach((model_name) => { %>
+      <option value="model_name"><%= model_name.model_name %></option>
+      <% }) %>
+    </select>
+  </label>
+  <label for="part_imageUrl">
+    Part Image-Url:
+    <input
+      type="url"
+      name="part_imageUrl"
+      id="part_imageUrl"
+      value="<%= item_info.part_imageurl %>"
+      required
+    />
+  </label>
+  <label for="part_price">
+    Price: $
+    <input
+      type="number"
+      name="part_price"
+      id="part_price"
+      value="<%= item_info.part_price %>"
+      required
+    />
+  </label>
+  <label for="part_description" id="part_description"> Description: </label>
+  <textarea name="part_description" id="part_description" required>
+<%= item_info.part_description %>
+</textarea
+  >
+  <label for="part_quantity">
+    Quantity:
+    <input
+      type="number"
+      name="part_quantity"
+      id="part_quantity"
+      value="<%= item_info.part_quantity %>"
+      required
+    />
+  </label>
+  <label for="part_oem">
+    OEM:
+    <input type="checkbox" name="part_oem" id="part_oem" />
+  </label>
+
+  <button type="submit" id="editSubmitBtn">Confirm Edit</button>
+</form>

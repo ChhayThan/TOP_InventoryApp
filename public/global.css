@@ -115,7 +115,8 @@ div.model a {
 
 div.item a:hover,
 div.model a:hover,
-div.itemInfo form > button:hover {
+div.itemInfo form > button:hover,
+button#editSubmitBtn:hover {
   background-color: #1868c4;
   transition: background-color 200ms ease;
   cursor: pointer;
@@ -126,19 +127,19 @@ ul li {
 }
 
 div.itemContent {
-  grid-column: span 5;
+  grid-column: span 4;
 
   display: flex;
   flex-direction: column;
   gap: 1em;
 
-  padding-left: 1em;
+  padding: 1em;
 }
 
-div.itemContent > a {
+div.itemContent > a,
+div.formContent > a {
   font-weight: bold;
   font-size: 1.2em;
-  margin-left: 1em;
 }
 
 div.itemContainer {
@@ -147,7 +148,8 @@ div.itemContainer {
 
   justify-content: center;
 }
-div.itemContent > a:hover {
+div.itemContent > a:hover,
+div.formContent > a:hover {
   text-decoration: underline;
 }
 div.itemContainer div.itemImg img {
@@ -175,11 +177,65 @@ div.itemInfo > h2.item_description {
   margin-top: 1em;
 }
 
-div.itemInfo form > button {
+div.itemInfo form > button,
+button#editSubmitBtn {
   margin-top: 2em;
   background-color: #3895ff;
   padding: 1em;
   color: white;
   border: none;
   border-radius: 10px;
+}
+
+div.formContent {
+  grid-column: span 4;
+  display: flex;
+  flex-direction: column;
+  gap: 1em;
+
+  padding: 1em;
+}
+
+div.formContent form {
+  display: flex;
+  flex-direction: column;
+  gap: 1em;
+  font-size: 1.2em;
+}
+div.formContent form label {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  gap: 1em;
+}
+div.formContent form label > input {
+  border: none;
+  flex-grow: 1;
+  padding: 0.5em;
+
+  font-size: 1em;
+  background-color: rgb(244, 244, 244);
+  border-radius: 10px;
+}
+
+input#part_price,
+input#part_quantity {
+  flex-grow: 0;
+  width: 100px;
+}
+input#part_oem {
+  flex-grow: 0;
+}
+
+textarea#part_description {
+  border: none;
+  padding: 1em;
+  background-color: rgb(244, 244, 244);
+  border-radius: 10px;
+  min-height: 1em;
+}
+
+select {
+  padding: 1em;
+  border: none;
 }

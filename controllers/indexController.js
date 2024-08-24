@@ -53,6 +53,7 @@ exports.getModelsByBrandCategory = async (req, res) => {
   const brand_names = await db.getBrandNameById(brand_id);
 
   const modelQuery = await db.getModelsByBrandId(brand_id);
+  console.log(modelQuery);
   const models = [];
 
   modelQuery.forEach((model) => {
@@ -121,6 +122,8 @@ exports.getPartsByModel = async (req, res) => {
 };
 
 exports.getPartById = async (req, res) => {
+  let brand_categories = await getBrandCategories();
+  let vehicleType_categories = await getVehicleTypesCategories();
   const itemQuery = await db.getPartById(req.params.part_id);
   const item = itemQuery[0];
   const brandQuery = await db.getBrandNameById(item.brand_id);
@@ -129,5 +132,33 @@ exports.getPartById = async (req, res) => {
     title: item.part_name,
     item,
     brand_name: brandQuery[0].brand_name,
+    brand_categories,
+    vehicleType_categories,
   });
+};
+
+exports.getEditForm = async (req, res) => {
+  const part_id = req.params.part_id;
+  const partQuery = await db.getPartById(part_id);
+  const item_info = partQuery[0];
+
+  let brand_categories = await getBrandCategories();
+  let vehicleType_categories = await getVehicleTypesCategories();
+  let modelQuery = await db.getModelsByBrandId(item_info.brand_id);
+  let model_names = [];
+  modelQuery.forEach((name) => {
+    model_names.push(name);
+  });
+
+  res.render("form", {
+    title: `Editing Item: ${part_id}`,
+    brand_categories,
+    vehicleType_categories,
+    brand_info: null,
+    item_info,
+    model_names,
+  });
+};
+exports.postPart = async (req, res) => {
+  res.send(req.body);
 };
