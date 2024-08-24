@@ -8,9 +8,9 @@ const validatePartEditForm = [
     .matches(/^[a-zA-Z0-9\s\-_,\.;:()]+$/)
     .withMessage("Part Name contains invalid characters."),
 
-  body("brand_name").trim().notEmpty().withMessage("Brand Name is required."),
+  body("brand_id").trim().notEmpty().withMessage("Brand Name is required."),
 
-  body("model_name").trim().notEmpty().withMessage("Model Name is required."),
+  body("model_id").trim().notEmpty().withMessage("Model Name is required."),
 
   body("part_imageUrl")
     .trim()

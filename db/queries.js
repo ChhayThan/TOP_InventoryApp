@@ -85,9 +85,9 @@ async function getPartById(part_id) {
 }
 
 async function updatePartById(reqbody, part_id) {
-  const oem = reqbody.oem ? true : false;
+  const oem = reqbody.part_oem ? true : false;
   await pool.query(
-    "UPDATE car_parts SET part_name = $1, part_imageurl = $2, part_price = $3, part_description = $4, part_quantity = $5, oem = $6 WHERE id = $7",
+    "UPDATE car_parts SET part_name = $1, part_imageurl = $2, part_price = $3, part_description = $4, part_quantity = $5, oem = $6, model_id = $7, brand_id = $8 WHERE id = $9",
     [
       reqbody.part_name,
       reqbody.part_imageUrl,
@@ -95,6 +95,8 @@ async function updatePartById(reqbody, part_id) {
       reqbody.part_description,
       reqbody.part_quantity,
       oem,
+      reqbody.model_id,
+      reqbody.brand_id,
       part_id,
     ]
   );

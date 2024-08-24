@@ -1,7 +1,7 @@
 const db = require("../db/queries");
-const { body, validationResult } = require("express-validator");
+const { validationResult } = require("express-validator");
 
-const validatePartEditForm = require("./validators/editItem");
+const validatePartEditForm = require("./validators/editItemValidator");
 
 async function getBrandCategories() {
   const brandsQuery = await db.getBrands();
@@ -147,8 +147,8 @@ exports.getEditForm = async (req, res) => {
   let vehicleType_categories = await getVehicleTypesCategories();
   let modelQuery = await db.getModelsByBrandId(item_info.brand_id);
   let model_names = [];
-  modelQuery.forEach((name) => {
-    model_names.push(name);
+  modelQuery.forEach((model) => {
+    model_names.push(model);
   });
 
   res.render("form", {

@@ -10,11 +10,11 @@
       required
     />
   </label>
-  <label for="brand_name">
-    Brand Name:
-    <select name="brand_name" id="brand_name">
+  <label for="brand_id">
+    Brand:
+    <select name="brand_id" id="brand_name">
       <% brand_categories.forEach((brand) => { %>
-      <option value="brand_name"
+      <option value="<%= brand.brand_id %>"
       <% if (item_info.brand_id === brand.brand_id) { %>
         selected
       <% } %>
@@ -22,11 +22,11 @@
       <% }) %>
     </select>
   </label>
-  <label for="model_name">
-    Model Name:
-    <select name="model_name" id="model_name">
-      <% model_names.forEach((model_name) => { %>
-      <option value="model_name"><%= model_name.model_name %></option>
+  <label for="model_id">
+    Model:
+    <select name="model_id" id="model_id">
+      <% model_names.forEach((model) => { %>
+      <option value="<%= model.id %>"><%= model.model_name %></option>
       <% }) %>
     </select>
   </label>
@@ -67,7 +67,11 @@
   </label>
   <label for="part_oem">
     OEM:
-    <input type="checkbox" name="part_oem" id="part_oem" />
+    <input type="checkbox" name="part_oem" id="part_oem" 
+    <% if (item_info.oem) {%>
+        checked="true"
+    <%}%>
+    />
   </label>
 
   <button type="submit" id="editSubmitBtn">Confirm Edit</button>
