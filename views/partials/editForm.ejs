@@ -1,3 +1,4 @@
+<a href="/">Back Home</a>
 <form action="/edit/part/<%= item_info.id %>" method="POST">
   <label for="part_name">
     Part Name:
@@ -50,7 +51,7 @@
     />
   </label>
   <label for="part_description" id="part_description"> Description: </label>
-  <textarea name="part_description" id="part_description" required>
+  <textarea name="part_description" id="part_description">
 <%= item_info.part_description %>
 </textarea
   >

@@ -84,6 +84,22 @@ async function getPartById(part_id) {
   return rows;
 }
 
+async function updatePartById(reqbody, part_id) {
+  const oem = reqbody.oem ? true : false;
+  await pool.query(
+    "UPDATE car_parts SET part_name = $1, part_imageurl = $2, part_price = $3, part_description = $4, part_quantity = $5, oem = $6 WHERE id = $7",
+    [
+      reqbody.part_name,
+      reqbody.part_imageUrl,
+      reqbody.part_price,
+      reqbody.part_description,
+      reqbody.part_quantity,
+      oem,
+      part_id,
+    ]
+  );
+}
+
 module.exports = {
   getAllParts,
   getModelsByBrandId,
@@ -95,4 +111,5 @@ module.exports = {
   getBrandNameById,
   getModelNameById,
   getPartById,
+  updatePartById,
 };

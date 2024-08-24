@@ -10,9 +10,9 @@
   <body>
     <%- include('./partials/navBar') %> <%- include('./partials/sideBar.ejs') %>
     <div class="formContent">
-      <a href="/">Back Home</a>
       <%if (brand_info) {%> <%- include('./partials/brandForm.ejs') %> <%} else
-      if (item_info) { %> <%- include('./partials/editForm.ejs') %> <%} %>
+      if (item_info) { %> <%- include('./partials/editForm.ejs') %> <%} else {
+      %> <%- include('./partials/errors.ejs') %> <%}%>
     </div>
   </body>
 </html>

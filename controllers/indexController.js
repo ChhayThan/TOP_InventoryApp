@@ -1,6 +1,8 @@
 const db = require("../db/queries");
 const { body, validationResult } = require("express-validator");
 
+const validatePartEditForm = require("./validators/editItem");
+
 async function getBrandCategories() {
   const brandsQuery = await db.getBrands();
   let brand_categories = [];
@@ -53,7 +55,6 @@ exports.getModelsByBrandCategory = async (req, res) => {
   const brand_names = await db.getBrandNameById(brand_id);
 
   const modelQuery = await db.getModelsByBrandId(brand_id);
-  console.log(modelQuery);
   const models = [];
 
   modelQuery.forEach((model) => {
@@ -159,6 +160,25 @@ exports.getEditForm = async (req, res) => {
     model_names,
   });
 };
-exports.postPart = async (req, res) => {
-  res.send(req.body);
-};
+exports.postPart = [
+  validatePartEditForm,
+  async (req, res) => {
+    let brand_categories = await getBrandCategories();
+    let vehicleType_categories = await getVehicleTypesCategories();
+    const errors = validationResult(req);
+    if (!errors.isEmpty()) {
+      return res.status(400).render("form", {
+        part_id: req.params.part_id,
+        errors: errors.array(),
+        title: `Error editing Item: ${req.body.part_id}`,
+        brand_categories,
+        vehicleType_categories,
+        brand_info: null,
+        item_info: null,
+        model_names: null,
+      });
+    }
+    await db.updatePartById(req.body, req.params.part_id);
+    res.redirect(`/item/${req.params.part_id}`);
+  },
+];

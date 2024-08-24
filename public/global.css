@@ -52,7 +52,7 @@ div.sidebar h1 {
 div.categories {
   display: flex;
   flex-direction: column;
-  gap: 10px;
+  gap: 1em;
 }
 div.categories h2 {
   text-align: center;
@@ -124,6 +124,21 @@ button#editSubmitBtn:hover {
 
 ul li {
   margin-bottom: 10px;
+}
+
+ul.category li {
+  margin-bottom: 1em;
+  border-bottom: 1px solid white;
+}
+ul.category li a,
+div.categories > a {
+  padding: 5px;
+}
+
+ul.category li a:hover,
+div.categories > a:hover {
+  background-color: #3895ff;
+  color: white;
 }
 
 div.itemContent {
