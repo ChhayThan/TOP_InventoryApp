@@ -49,6 +49,22 @@ div.sidebar h1 {
   font-size: 1.5em;
 }
 
+div.sidebarBtns {
+  display: flex;
+  flex-direction: column;
+  gap: 1em;
+}
+div.sidebarBtns a {
+  background-color: #3895ff;
+  padding: 10px;
+  border-radius: 10px;
+  color: white;
+}
+div.sidebarBtns a:hover {
+  background-color: #1868c4;
+  transition: background-color ease 200ms;
+}
+
 div.categories {
   display: flex;
   flex-direction: column;
