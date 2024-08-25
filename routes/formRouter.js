@@ -11,4 +11,7 @@ formRouter.post("/add/car_brands", formController.postBrandCategory);
 formRouter.get("/add/car_models", formController.getModelForm);
 formRouter.post("/add/car_models", formController.postModel);
 
+formRouter.get("/edit/car_models/:model_id", formController.editModelForm);
+formRouter.post("/edit/car_models/:model_id", formController.updateModel);
+
 module.exports = formRouter;

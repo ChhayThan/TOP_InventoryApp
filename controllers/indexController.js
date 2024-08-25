@@ -99,6 +99,7 @@ exports.getPartsByModel = async (req, res) => {
     items,
     brand_categories,
     vehicleType_categories,
+    model_id,
   });
 };
 

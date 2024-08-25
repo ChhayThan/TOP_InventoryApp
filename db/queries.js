@@ -1,5 +1,10 @@
 const pool = require("./pool");
 
+async function getAdminInfo() {
+  const { rows } = await pool.query("SELECT * FROM admin_info");
+  return rows;
+}
+
 async function getAllParts() {
   const { rows } = await pool.query("SELECT * FROM car_parts");
   return rows;
@@ -58,6 +63,13 @@ async function getBrandNameById(brand_id) {
   return rows;
 }
 
+async function getModelById(model_id) {
+  const { rows } = await pool.query("SELECT * FROM car_models WHERE id = $1", [
+    model_id,
+  ]);
+  return rows;
+}
+
 async function getModelNameById(model_id) {
   const { rows } = await pool.query(
     "SELECT DISTINCT model_name FROM car_models WHERE id = $1",
@@ -106,6 +118,19 @@ async function updatePartById(reqbody, part_id) {
     ]
   );
 }
+async function updateModelById(model_id, reqbody) {
+  await pool.query(
+    "UPDATE car_models SET model_name = $1, model_imageurl = $2, vehicle_type = $3, brand_id = $4 WHERE id = $5",
+    [
+      reqbody.model_name,
+      reqbody.model_imageurl,
+      reqbody.vehicle_type,
+      reqbody.brand_id,
+      model_id,
+    ]
+  );
+}
+
 async function addNewCarBrand(reqbody) {
   const { brand_name, brand_imageurl } = reqbody;
   const insertResult = await pool.query(
@@ -135,8 +160,10 @@ async function deleteBrandById(brand_id) {
 }
 
 module.exports = {
+  getAdminInfo,
   getAllParts,
   getAllModels,
+  getModelById,
   getModelsByBrandId,
   getModelNamesByBrandId,
   getPartsByModel,
@@ -147,6 +174,7 @@ module.exports = {
   getModelNameById,
   getPartById,
   updatePartById,
+  updateModelById,
   addNewCarBrand,
   addNewCarModel,
   deleteBrandById,

@@ -2,7 +2,10 @@ const db = require("../db/queries");
 const { validationResult } = require("express-validator");
 const validatePartEditForm = require("./validators/editItemValidator");
 const validateBrand = require("./validators/brandValidator");
-const validateModel = require("./validators/modelValidator");
+const {
+  validateCarModelForm,
+  validateCarModelEdit,
+} = require("./validators/modelValidator");
 
 const {
   getBrandCategories,
@@ -33,20 +36,25 @@ exports.getEditForm = async (req, res) => {
 exports.insertUpdatedItem = [
   validatePartEditForm,
   async (req, res) => {
-    let brand_categories = await getBrandCategories();
-    let vehicleType_categories = await getVehicleTypesCategories();
-    const errors = validationResult(req);
-    if (!errors.isEmpty()) {
-      return res.status(400).render("form", {
-        part_id: req.params.part_id,
-        errors: errors.array(),
-        title: `Error editing Item: ${req.body.part_id}`,
-        brand_categories,
-        vehicleType_categories,
-      });
+    const adminQuery = await db.getAdminInfo();
+    const adminPassword = adminQuery[0].adminpassword;
+    if (req.body.adminPassword === adminPassword) {
+      let brand_categories = await getBrandCategories();
+      let vehicleType_categories = await getVehicleTypesCategories();
+      const errors = validationResult(req);
+      if (!errors.isEmpty()) {
+        return res.status(400).render("form", {
+          part_id: req.params.part_id,
+          errors: errors.array(),
+          title: `Error editing Item: ${req.body.part_id}`,
+          brand_categories,
+          vehicleType_categories,
+        });
+      }
+      await db.updatePartById(req.body, req.params.part_id);
+      return res.redirect(`/item/${req.params.part_id}`);
     }
-    await db.updatePartById(req.body, req.params.part_id);
-    res.redirect(`/item/${req.params.part_id}`);
+    res.status(400).send("Incorrect Admin Password");
   },
 ];
 
@@ -77,7 +85,6 @@ exports.postBrandCategory = [
       });
     }
     const insertResult = await db.addNewCarBrand(req.body);
-    console.log(insertResult);
     res.redirect(`/`);
   },
 ];
@@ -94,8 +101,52 @@ exports.getModelForm = async (req, res) => {
   });
 };
 
+exports.editModelForm = async (req, res) => {
+  let brand_categories = await getBrandCategories();
+  let vehicleType_categories = await getVehicleTypesCategories();
+  const model_id = req.params.model_id;
+  const modelQuery = await db.getModelById(model_id);
+
+  res.render("form", {
+    title: `Add Brand Category`,
+    brand_categories,
+    vehicleType_categories,
+    modelForm: true,
+    editModel: true,
+    model_id,
+    model_name: modelQuery[0].model_name,
+    model_imageurl: modelQuery[0].model_imageurl,
+    vehicle_type: modelQuery[0].vehicle_type,
+    brand_id: modelQuery[0].brand_id,
+  });
+};
+
 exports.postModel = [
-  validateModel,
+  validateCarModelForm,
+  async (req, res) => {
+    const adminQuery = await db.getAdminInfo();
+    const adminPassword = adminQuery[0].adminpassword;
+    if (req.body.adminPassword === adminPassword) {
+      let brand_categories = await getBrandCategories();
+      let vehicleType_categories = await getVehicleTypesCategories();
+      const errors = validationResult(req);
+      if (!errors.isEmpty()) {
+        return res.status(400).render("form", {
+          errors: errors.array(),
+          title: `Error editing Item: ${req.body.part_id}`,
+          brand_categories,
+          vehicleType_categories,
+        });
+      }
+      const insertResult = await db.addNewCarModel(req.body);
+      return res.redirect(`/`);
+    }
+    res.status(400).send("Incorrect Admin Password");
+  },
+];
+
+exports.updateModel = [
+  validateCarModelEdit,
   async (req, res) => {
     let brand_categories = await getBrandCategories();
     let vehicleType_categories = await getVehicleTypesCategories();
@@ -108,8 +159,10 @@ exports.postModel = [
         vehicleType_categories,
       });
     }
-    res.send(req.body);
-    const insertResult = await db.addNewCarModel(req.body);
-    res.redirect(`/`);
+    const insertResult = await db.updateModelById(
+      req.params.model_id,
+      req.body
+    );
+    res.redirect(`/category/${req.body.brand_id}`);
   },
 ];

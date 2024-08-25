@@ -23,13 +23,30 @@
           </div>
           <h1 class="model_title"><%= model.model_name %></h1>
           <h2 class="model_vehicle_type"><%= model.model_vehicle_type %></h2>
-          <a href="/model/<%= model.id %>">View parts for this vehicle</a>
+          <div class="modelBtns">
+            <a href="/model/<%= model.id %>" class="viewBtn"
+              >View Parts for this Model</a
+            >
+            <a class="editModelBtn" href="/form/edit/car_models/<%= model.id %>"
+              >Edit</a
+            >
+          </div>
         </div>
         <% }) %> <% } else { %>
-        <p>No items available.</p>
-        <a href="/delete/brand/<%= locals.brand_id %>" class="deleteModel"
-          >Delete model</a
-        >
+        <div class="empty">
+          <p>No items available.</p>
+          <a href="/form/add/car_models" class="addModel">Add Car Model</a>
+          <form action="/delete/brand/<%= locals.brand_id %>" method="POST">
+            <input
+              type="password"
+              name="adminPassword"
+              id="adminPassword"
+              placeholder="Admin Password"
+            />
+            <button type="submit" class="deleteModel">Delete Brand</button>
+          </form>
+        </div>
+
         <% } %>
       </div>
     </div>

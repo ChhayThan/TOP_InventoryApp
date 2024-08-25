@@ -1,24 +1,44 @@
 <a href="/">Back Home</a>
-<form action="/form/add/car_models" method="POST" class="addModel">
+<form action="<%= locals.editModel ? `/form/edit/car_models/${locals.model_id}` : '/form/add/car_models' %>"  method="POST" class="addModel">
   <label for="model_name">
     Model Name:
-    <input type="text" name="model_name" id="model_name" />
+    <input
+      type="text"
+      name="model_name"
+      id="model_name"
+      value="<%= locals.model_name %>"
+    />
   </label>
   <label for="model_imageurl">
     Model Image Url:
-    <input type="url" name="model_imageurl" id="model_imageurl" />
+    <input
+      type="url"
+      name="model_imageurl"
+      id="model_imageurl"
+      value="<%= locals.model_imageurl %>"
+    />
   </label>
   <label for="vehicle_type">
     Type [Sedan, Van, SUV, Coupe, Sports, or Truck]:
-    <input type="text" name="vehicle_type" id="vehicle_type" />
+    <input type="text" name="vehicle_type" id="vehicle_type" value="<%= locals.vehicle_type %>"/>
   </label>
   <label for="brand_id">
     Brand:
-    <select name="brand_id" id="brand_name">
+    <select name="brand_id" id="brand_id">
       <% brand_categories.forEach((brand) => { %>
-      <option value="<%= brand.brand_id %>"><%= brand.brand_name %></option>
+      <option value="<%= brand.brand_id %>"
+        <% if (locals.brand_id === brand.brand_id) { %>
+            selected
+          <% } %>
+          ><%= brand.brand_name %></option>
       <% }) %>
     </select>
   </label>
-  <button type="submit" class="addBrandBtn">Add Model</button>
+  <% if(locals.editModel) { %>
+    <label for="adminPassword">
+       Admin Password:
+        <input type="password" name="adminPassword" id="adminPassword"/>
+      </label>
+  <%}%>
+  <button type="submit" class="addBrandBtn"><%= locals.editModel ? `Update Model` : 'Add Model' %></button>
 </form>

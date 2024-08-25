@@ -3,6 +3,11 @@ require("dotenv").config();
 const { Client } = require("pg");
 
 const sql = `
+CREATE TABLE IF NOT EXISTS Admin_info (
+    id INTEGER PRIMARY KEY GENERATED ALWAYS AS IDENTITY, 
+    adminPassword VARCHAR(255)
+);
+
 CREATE TABLE IF NOT EXISTS car_brands (
     id INTEGER PRIMARY KEY GENERATED ALWAYS AS IDENTITY, 
     brand_name VARCHAR(255), 
@@ -32,17 +37,22 @@ CREATE TABLE IF NOT EXISTS car_parts (
     FOREIGN KEY (brand_id) REFERENCES car_brands(id)
 );
 
+INSERT INTO admin_info (adminPassword) VALUES ('BMWLOVER');
+
 INSERT INTO car_brands (brand_name, brand_imageUrl) 
 VALUES
   ('BMW', 'https://upload.wikimedia.org/wikipedia/commons/thumb/4/44/BMW.svg/768px-BMW.svg.png'),
   ('Mercedes-Benz', 'https://upload.wikimedia.org/wikipedia/commons/thumb/9/90/Mercedes-Logo.svg/2048px-Mercedes-Logo.svg.png');
+  ('Ferrari', 'https://i.pinimg.com/originals/cd/36/19/cd3619f9e171f176bf0774017147170d.png');
 
 INSERT INTO car_models (model_name, model_imageUrl, vehicle_type, brand_id)
 VALUES 
-  ('BMW M3 G80', 'https://media.autoexpress.co.uk/image/private/s--X-WVjvBW--/f_auto,t_content-image-full-desktop@1/v1600853911/evo/2020/09/2021%20BMW%20M3%20fresh-9.jpg', 'Sedan', 1),
-  ('BMW X3 G01', 'https://www.premiumfelgi.pl/userdata/gfx/64001.jpg', 'SUV', 1),
-  ('Mercedes C63', 'https://hips.hearstapps.com/hmg-prod/images/2023-mercedes-amg-c63-s-e-performance-114-65d79698b0e26.jpg?crop=0.553xw:0.621xh;0.418xw,0.329xh&resize=768:* ', 'Sedan', 2),
-  ('Mercedes GLC 300', 'https://cdn.motor1.com/images/mgl/KbboO1/s3/2022-mercedes-glc.jpg', 'SUV', 2);
+  ('BMW M3 G80', 'https://www.bmw.com.kh/content/dam/bmw/common/all-models/m-series/m3-sedan/2020/overview/bmw-3-series-sedan-m-automobiles-gallery-impressions-m3-competition-02-mobile.jpg', 'Sedan', 1),
+  ('BMW X3 G01', 'https://d2ivfcfbdvj3sm.cloudfront.net/7fc965ab77efe6e0fa62e4ca1ea7673bb65b4057091e3d8e88cb10/stills_0640_png/MY2023/51162/51162_st0640_116.png', 'SUV', 1),
+  ('BMW M5 F90', 'https://www.bmw.co.za/content/dam/bmw/common/all-models/m-series/m5-sedan/2021/Overview/bmw-m5-cs-onepager-gallery-m5-core-02-wallpaper.jpg', 'Sedan', 1),
+  ('Mercedes C63', 'https://www.mbusa.com/content/dam/mb-nafta/us/myco/my23/c/coupe/byo-options/2023-AMG-C-COUPE-MP-047.jpg', 'Sedan', 2),
+  ('Mercedes GLC 300', 'https://www.mercedes-benz.com.au/content/dam/hq/passengercars/cars/glc/suv-x254/modeloverview/images/mercedes-benz-glc-suv-x254-modeloverview-696x392-05-2022.png', 'SUV', 2),
+  ('Ferrari SF90', 'https://vrrb-fsb-prod-backend.s3.us-west-1.amazonaws.com/strapi/SF_90_Stradale_Thumb_500a464bf7.png', 'Sports', 2);
 
 INSERT INTO car_parts (part_name, part_imageUrl, part_price, part_description, part_quantity, oem, model_id, brand_id) 
 VALUES 

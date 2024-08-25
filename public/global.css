@@ -54,13 +54,15 @@ div.sidebarBtns {
   flex-direction: column;
   gap: 1em;
 }
-div.sidebarBtns a {
+div.sidebarBtns a,
+a.addModel {
   background-color: #3895ff;
   padding: 10px;
   border-radius: 10px;
   color: white;
 }
-div.sidebarBtns a:hover {
+div.sidebarBtns a:hover,
+a.addModel:hover {
   background-color: #1868c4;
   transition: background-color ease 200ms;
 }
@@ -121,12 +123,56 @@ div.modelImg img {
   object-fit: contain;
 }
 
+div.modelBtns {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  gap: 1em;
+  align-items: center;
+  justify-content: center;
+}
+
 div.item a,
-div.model a {
-  padding: 1em;
+div.modelBtns a {
+  padding: 10px;
   color: white;
   border-radius: 10px;
   background-color: #3895ff;
+}
+div.modelBtns a.viewBtn {
+  width: 80%;
+  text-align: center;
+}
+div.modelBtns a.editModelBtn {
+  color: rgb(116, 116, 116);
+  background-color: white;
+}
+div.modelBtns a.editModelBtn:hover {
+  background-color: rgb(78, 78, 78);
+  color: white;
+}
+div.empty button.deleteModelBtn {
+  padding: 10px;
+  color: #ff3838;
+  background-color: white;
+  border: none;
+  border-radius: 10px;
+}
+div.empty button.deleteModelBtn:hover {
+  background-color: #e02e2e;
+  color: white;
+  border-radius: 10px;
+  transition: background-color 200ms ease;
+}
+div.empty form input {
+  border: none;
+  background-color: lightgrey;
+  padding: 10px;
+  border-radius: 10px;
+  color: white;
+}
+div.empty form input::placeholder {
+  color: white;
 }
 
 div.item a:hover,
@@ -282,13 +328,23 @@ button.addBrandBtn {
   border: none;
 }
 
-a.deleteModel {
+Button.deleteModel {
   background-color: #ff3838;
   padding: 10px;
   border-radius: 10px;
   color: white;
+  border: none;
 }
-a.deleteModel:hover {
+Button.deleteModel:hover {
   background-color: #e02e2e;
   transition: background-color 200ms ease;
+}
+
+div.empty {
+  display: flex;
+  flex-direction: column;
+  gap: 1em;
+}
+div.empty a {
+  text-align: center;
 }

@@ -24,7 +24,19 @@
           <a href="/item/<%= item.id %>">View Details</a>
         </div>
         <% }) %> <% } else { %>
-        <p>No items available.</p>
+        <div class="empty">
+          <p>No items available.</p>
+          <a href="/form/add/car_models" class="addModel">Add Car Model</a>
+          <form action="/delete/model/<%=locals.model_id %>" method="POST">
+            <input
+              type="password"
+              name="adminPassword"
+              id="adminPassword"
+              placeholder="Admin Password"
+            />
+            <button type="submit" class="deleteModelBtn">Delete Model</button>
+          </form>
+        </div>
         <% } %>
       </div>
     </div>
