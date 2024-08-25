@@ -1,5 +1,8 @@
+<% if (locals.part_id) { %>
 <a href="/item/<%= part_id %>">Back to item page</a>
-<% if (locals.errors) {%>
+<%} else { %>
+<a href="/%>">Back Home</a>
+<%}%> <% if (locals.errors) {%>
 <ul class="errorUL">
   <% errors.forEach(function(error) { %>
   <li><%= error.msg %></li>

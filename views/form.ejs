@@ -11,8 +11,9 @@
     <%- include('./partials/navBar') %> <%- include('./partials/sideBar.ejs') %>
     <div class="formContent">
       <%if (locals.brandForm) {%> <%- include('./partials/brandForm.ejs') %> <%}
-      else if (locals.item_info) { %> <%- include('./partials/editForm.ejs') %>
-      <%} else { %> <%- include('./partials/errors.ejs') %> <%}%>
+      else if (locals.modelForm) { %> <%- include('./partials/modelForm.ejs') %>
+      <%} else if (locals.item_info) { %> <%- include('./partials/editForm.ejs')
+      %> <%} else { %> <%- include('./partials/errors.ejs') %> <%}%>
     </div>
   </body>
 </html>
