@@ -5,6 +5,11 @@ async function getAllParts() {
   return rows;
 }
 
+async function getAllModels() {
+  const { rows } = await pool.query("SELECT * FROM car_models");
+  return rows;
+}
+
 async function getModelsByBrandId(brand_id) {
   const { rows } = await pool.query(
     "SELECT * FROM car_models WHERE brand_id = $1",
@@ -101,9 +106,29 @@ async function updatePartById(reqbody, part_id) {
     ]
   );
 }
+async function addNewCarBrand(reqbody) {
+  const { brand_name, brand_imageurl } = reqbody;
+  const insertResult = await pool.query(
+    "INSERT INTO car_brands (brand_name, brand_imageurl) VALUES ($1, $2)",
+    [brand_name, brand_imageurl]
+  );
+
+  return insertResult;
+}
+
+async function addNewCarModel(reqbody) {
+  const { model_name, model_imageurl, vehicle_type, brand_id } = reqbody;
+  const insertResult = await pool.query(
+    "INSERT INTO car_models (model_name, model_imageurl, vehicle_type, brand_id) VALUES ($1, $2, $3, $4)",
+    [model_name, model_imageurl, vehicle_type, brand_id]
+  );
+
+  return insertResult;
+}
 
 module.exports = {
   getAllParts,
+  getAllModels,
   getModelsByBrandId,
   getModelNamesByBrandId,
   getPartsByModel,
@@ -114,4 +139,6 @@ module.exports = {
   getModelNameById,
   getPartById,
   updatePartById,
+  addNewCarBrand,
+  addNewCarModel,
 };

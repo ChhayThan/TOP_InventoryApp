@@ -1,4 +1,5 @@
 const { body } = require("express-validator");
+const { getModelNames } = require("../utils/getters");
 
 const validateCarModelForm = [
   body("model_name")
@@ -6,7 +7,16 @@ const validateCarModelForm = [
     .isLength({ min: 1, max: 255 })
     .withMessage("Model Name must be between 1 and 255 characters.")
     .matches(/^[a-zA-Z0-9\s\-_,\.;:()]+$/)
-    .withMessage("Model Name contains invalid characters."),
+    .withMessage("Model Name contains invalid characters.")
+    .custom(async (value) => {
+      const modelNames = await getModelNames();
+      if (modelNames.includes(value)) {
+        throw new Error(
+          "Model already exists in inventory. Please provide a unique model."
+        );
+      }
+      return true;
+    }),
 
   body("model_imageurl")
     .trim()

@@ -50,6 +50,7 @@ exports.getModelsByBrandCategory = async (req, res) => {
     title: `${brand_names[0].brand_name} Category`,
     brand_categories,
     vehicleType_categories,
+    brand_id,
   });
 };
 

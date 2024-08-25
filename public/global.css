@@ -281,3 +281,14 @@ button.addBrandBtn {
   background-color: #3895ff;
   border: none;
 }
+
+a.deleteModel {
+  background-color: #ff3838;
+  padding: 10px;
+  border-radius: 10px;
+  color: white;
+}
+a.deleteModel:hover {
+  background-color: #e02e2e;
+  transition: background-color 200ms ease;
+}

@@ -16,7 +16,5 @@ indexRouter.get(
 indexRouter.get("/model/:model_id", indexController.getPartsByModel);
 
 indexRouter.get("/item/:part_id", indexController.getPartById);
-// indexRouter.get("/edit/part/:part_id", indexController.getEditForm);
-// indexRouter.post("/edit/part/:part_id", indexController.postPart);
 
 module.exports = indexRouter;

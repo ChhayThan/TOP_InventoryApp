@@ -70,14 +70,15 @@ exports.postBrandCategory = [
     const errors = validationResult(req);
     if (!errors.isEmpty()) {
       return res.status(400).render("form", {
-        part_id: req.params.part_id,
         errors: errors.array(),
         title: `Error editing Item: ${req.body.part_id}`,
         brand_categories,
         vehicleType_categories,
       });
     }
-    res.send("TO BE IMPLEMENTED");
+    const insertResult = await db.addNewCarBrand(req.body);
+    console.log(insertResult);
+    res.redirect(`/`);
   },
 ];
 
@@ -101,13 +102,14 @@ exports.postModel = [
     const errors = validationResult(req);
     if (!errors.isEmpty()) {
       return res.status(400).render("form", {
-        part_id: req.params.part_id,
         errors: errors.array(),
         title: `Error editing Item: ${req.body.part_id}`,
         brand_categories,
         vehicleType_categories,
       });
     }
-    res.send("TO BE IMPLEMENTED");
+    res.send(req.body);
+    const insertResult = await db.addNewCarModel(req.body);
+    res.redirect(`/`);
   },
 ];

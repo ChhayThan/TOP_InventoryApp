@@ -21,5 +21,18 @@ async function getVehicleTypesCategories() {
   });
   return vehicleType_categories;
 }
+async function getModelNames() {
+  const modelQuery = await db.getAllModels();
+  let modelNames = [];
 
-module.exports = { getBrandCategories, getVehicleTypesCategories };
+  modelQuery.forEach((model) => {
+    modelNames.push(model.model_name);
+  });
+  return modelNames;
+}
+
+module.exports = {
+  getBrandCategories,
+  getVehicleTypesCategories,
+  getModelNames,
+};
