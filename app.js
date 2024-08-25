@@ -4,6 +4,7 @@ const app = express();
 
 const indexRouter = require("./routes/indexRouter");
 const formRouter = require("./routes/formRouter");
+const deleteRouter = require("./routes/deleteRouter");
 
 app.use(express.urlencoded({ extended: true }));
 
@@ -15,6 +16,7 @@ app.set("view engine", "ejs");
 
 app.use("/", indexRouter);
 app.use("/form", formRouter);
+app.use("/delete", deleteRouter);
 
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => console.log(`Server is running: Port ${PORT}`));
