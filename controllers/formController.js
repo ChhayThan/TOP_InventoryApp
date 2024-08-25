@@ -124,6 +124,25 @@ exports.editModelForm = async (req, res) => {
 exports.postModel = [
   validateCarModelForm,
   async (req, res) => {
+    let brand_categories = await getBrandCategories();
+    let vehicleType_categories = await getVehicleTypesCategories();
+    const errors = validationResult(req);
+    if (!errors.isEmpty()) {
+      return res.status(400).render("form", {
+        errors: errors.array(),
+        title: `Error editing Item: ${req.body.part_id}`,
+        brand_categories,
+        vehicleType_categories,
+      });
+    }
+    const insertResult = await db.addNewCarModel(req.body);
+    res.redirect(`/`);
+  },
+];
+
+exports.updateModel = [
+  validateCarModelEdit,
+  async (req, res) => {
     const adminQuery = await db.getAdminInfo();
     const adminPassword = adminQuery[0].adminpassword;
     if (req.body.adminPassword === adminPassword) {
@@ -138,31 +157,12 @@ exports.postModel = [
           vehicleType_categories,
         });
       }
-      const insertResult = await db.addNewCarModel(req.body);
-      return res.redirect(`/`);
+      const insertResult = await db.updateModelById(
+        req.params.model_id,
+        req.body
+      );
+      return res.redirect(`/category/${req.body.brand_id}`);
     }
-    res.status(400).send("Incorrect Admin Password");
-  },
-];
-
-exports.updateModel = [
-  validateCarModelEdit,
-  async (req, res) => {
-    let brand_categories = await getBrandCategories();
-    let vehicleType_categories = await getVehicleTypesCategories();
-    const errors = validationResult(req);
-    if (!errors.isEmpty()) {
-      return res.status(400).render("form", {
-        errors: errors.array(),
-        title: `Error editing Item: ${req.body.part_id}`,
-        brand_categories,
-        vehicleType_categories,
-      });
-    }
-    const insertResult = await db.updateModelById(
-      req.params.model_id,
-      req.body
-    );
-    res.redirect(`/category/${req.body.brand_id}`);
+    res.status(400).send("Incorrect Admin Password.");
   },
 ];

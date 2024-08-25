@@ -159,6 +159,14 @@ async function deleteBrandById(brand_id) {
   return deleteResult;
 }
 
+async function deleteModelById(model_id) {
+  const deleteResult = await pool.query(
+    "DELETE FROM car_models WHERE id = $1",
+    [model_id]
+  );
+  return deleteResult;
+}
+
 module.exports = {
   getAdminInfo,
   getAllParts,
@@ -178,4 +186,5 @@ module.exports = {
   addNewCarBrand,
   addNewCarModel,
   deleteBrandById,
+  deleteModelById,
 };
