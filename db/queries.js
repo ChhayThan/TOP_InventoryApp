@@ -190,6 +190,14 @@ async function addItemIntoModelById(model_id, reqbody) {
   );
 }
 
+async function searchItems(search_input) {
+  const { rows } = await pool.query(
+    "SELECT * FROM car_parts WHERE part_name LIKE $1",
+    [`%${search_input}%`]
+  );
+  return rows;
+}
+
 module.exports = {
   getAdminInfo,
   getAllParts,
@@ -212,4 +220,5 @@ module.exports = {
   deleteModelById,
   deletePartById,
   addItemIntoModelById,
+  searchItems,
 };

@@ -17,4 +17,6 @@ indexRouter.get("/model/:model_id", indexController.getPartsByModel);
 
 indexRouter.get("/item/:part_id", indexController.getPartById);
 
+indexRouter.get("/search", indexController.searchItem);
+
 module.exports = indexRouter;

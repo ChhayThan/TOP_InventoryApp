@@ -36,6 +36,21 @@ nav div.search input:hover::placeholder {
   color: rgb(171, 171, 171);
 }
 
+button.searchBtn {
+  padding: 10px;
+  border: none;
+  border-radius: 10px;
+  background-color: white;
+}
+button.searchBtn:hover {
+  background-color: lightgrey;
+  transition: background-color 200ms ease;
+}
+button.searchBtn:active {
+  transform: translateY(2px);
+  color: white;
+}
+
 div.sidebar {
   grid-column: 1 / 2;
   padding: 2em;

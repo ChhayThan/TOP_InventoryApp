@@ -2,14 +2,17 @@
   <div class="title">Eric's Garage</div>
 
   <div class="search">
-    <form action="/search" method="GET"></form>
-    <label for="search_part_name">
-      <input
-        type="text"
-        name="search_part_name"
-        id="search_part_name"
-        placeholder="Search"
-      />
-    </label>
+    <form action="/search" method="GET">
+      <label for="search_input">
+        <input
+          type="text"
+          name="search_input"
+          id="search_input"
+          placeholder="Search"
+        />
+      </label>
+
+      <button type="submit" class="searchBtn">Search</button>
+    </form>
   </div>
 </nav>
