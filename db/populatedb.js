@@ -74,11 +74,10 @@ VALUES
 async function main() {
   console.log("seeding...");
   const client = new Client({
-    connectionString:
-      "postgresql://ericchhour:Chhaythan2308@localhost:5432/car_part_inventory",
-    // ssl: {
-    //   rejectUnauthorized: false, // This allows self-signed certificates. Set to true for strict SSL.
-    // },
+    connectionString: process.env.CONNECTION_STRING,
+    ssl: {
+      rejectUnauthorized: false, // This allows self-signed certificates. Set to true for strict SSL.
+    },
   });
 
   await client.connect();
