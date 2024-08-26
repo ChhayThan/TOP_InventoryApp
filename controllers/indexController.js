@@ -123,8 +123,6 @@ exports.searchItem = async (req, res) => {
   const search_input = req.query.search_input;
   let brand_categories = await getBrandCategories();
   let vehicleType_categories = await getVehicleTypesCategories();
-
-  console.log(search_input);
   // const partsQuery = await db.searchItems(search_input);
   const partsQuery = await db.getAllParts();
   let items = [];
