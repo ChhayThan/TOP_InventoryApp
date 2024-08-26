@@ -36,14 +36,18 @@
         <div class="empty">
           <p>No items available.</p>
           <a href="/form/add/car_models" class="addModel">Add Car Model</a>
-          <form action="/delete/brand/<%= locals.brand_id %>" method="POST">
+          <form
+            action="/delete/brand/<%= locals.brand_id %>"
+            method="POST"
+            class="deleteForm"
+          >
             <input
               type="password"
               name="adminPassword"
               id="adminPassword"
               placeholder="Admin Password"
             />
-            <button type="submit" class="deleteModel">Delete Brand</button>
+            <button type="submit" class="deleteBtn">Delete Brand</button>
           </form>
         </div>
 

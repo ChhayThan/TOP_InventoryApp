@@ -21,3 +21,14 @@ exports.deleteModelById = async (req, res) => {
   }
   res.status(400).send("Incorrect Admin Password");
 };
+
+exports.deletePartById = async (req, res) => {
+  const adminQuery = await db.getAdminInfo();
+  const adminPassword = adminQuery[0].adminpassword;
+  if (req.body.adminPassword === adminPassword) {
+    const part_id = req.params.part_id;
+    await db.deletePartById(part_id);
+    return res.redirect("/");
+  }
+  res.status(400).send("Incorrect Admin Password");
+};

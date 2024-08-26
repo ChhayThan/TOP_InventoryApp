@@ -50,7 +50,7 @@ VALUES
   ('BMW M3 G80', 'https://www.bmw.com.kh/content/dam/bmw/common/all-models/m-series/m3-sedan/2020/overview/bmw-3-series-sedan-m-automobiles-gallery-impressions-m3-competition-02-mobile.jpg', 'Sedan', 1),
   ('BMW X3 G01', 'https://d2ivfcfbdvj3sm.cloudfront.net/7fc965ab77efe6e0fa62e4ca1ea7673bb65b4057091e3d8e88cb10/stills_0640_png/MY2023/51162/51162_st0640_116.png', 'SUV', 1),
   ('BMW M5 F90', 'https://www.bmw.co.za/content/dam/bmw/common/all-models/m-series/m5-sedan/2021/Overview/bmw-m5-cs-onepager-gallery-m5-core-02-wallpaper.jpg', 'Sedan', 1),
-  ('Mercedes C63', 'https://www.mbusa.com/content/dam/mb-nafta/us/myco/my23/c/coupe/byo-options/2023-AMG-C-COUPE-MP-047.jpg', 'Sedan', 2),
+  ('Mercedes C63 S COUPE', 'https://www.mbusa.com/content/dam/mb-nafta/us/myco/my23/c/coupe/byo-options/2023-AMG-C-COUPE-MP-047.jpg', 'Sedan', 2),
   ('Mercedes GLC 300', 'https://www.mercedes-benz.com.au/content/dam/hq/passengercars/cars/glc/suv-x254/modeloverview/images/mercedes-benz-glc-suv-x254-modeloverview-696x392-05-2022.png', 'SUV', 2),
   ('Ferrari SF90', 'https://vrrb-fsb-prod-backend.s3.us-west-1.amazonaws.com/strapi/SF_90_Stradale_Thumb_500a464bf7.png', 'Sports', 2),
   ('Ferrari LaFerrari (2013)', 'https://cdn.ferrari.com/cms/network/media/img/resize/5d961f5c230eb47c19f12b89-ferrari-laferrari-2013-carbanner-mobile?width=800&height=600', 'Sports', 2);

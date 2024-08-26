@@ -28,6 +28,19 @@
           <form action="/form/edit/part/<%= item.id %>" method="GET">
             <button type="submit">Edit this item</button>
           </form>
+          <form
+            action="/delete/item/<%= item.id %>"
+            method="POST"
+            class="deleteForm"
+          >
+            <input
+              type="password"
+              name="adminPassword"
+              id="adminPassword"
+              placeholder="Admin Password"
+            />
+            <button type="submit" class="deleteBtn">Delete Item</button>
+          </form>
         </div>
 
         <% } else { %>

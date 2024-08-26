@@ -103,7 +103,7 @@ div.modelsContainer {
 div.item,
 div.model {
   padding: 1em;
-  max-width: 280px;
+  width: 280px;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -152,29 +152,6 @@ div.modelBtns a.editModelBtn {
 }
 div.modelBtns a.editModelBtn:hover {
   background-color: rgb(78, 78, 78);
-  color: white;
-}
-div.empty button.deleteModelBtn {
-  padding: 10px;
-  color: #ff3838;
-  background-color: white;
-  border: none;
-  border-radius: 10px;
-}
-div.empty button.deleteModelBtn:hover {
-  background-color: #e02e2e;
-  color: white;
-  border-radius: 10px;
-  transition: background-color 200ms ease;
-}
-div.empty form input {
-  border: none;
-  background-color: lightgrey;
-  padding: 10px;
-  border-radius: 10px;
-  color: white;
-}
-div.empty form input::placeholder {
   color: white;
 }
 
@@ -350,4 +327,28 @@ div.empty {
 }
 div.empty a {
   text-align: center;
+}
+
+form.deleteForm > button.deleteBtn {
+  padding: 10px;
+  color: #ff3838;
+  background-color: white;
+  border: none;
+  border-radius: 10px;
+}
+form.deleteForm button.deleteBtn:hover {
+  background-color: #e02e2e;
+  color: white;
+  border-radius: 10px;
+  transition: background-color 200ms ease;
+}
+form.deleteForm input {
+  border: none;
+  background-color: lightgrey;
+  padding: 10px;
+  border-radius: 10px;
+  color: white;
+}
+form.deleteForm input::placeholder {
+  color: white;
 }

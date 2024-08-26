@@ -179,7 +179,6 @@ exports.getItemForm = async (req, res) => {
   const modelQuery = await db.getModelById(req.params.model_id);
   const brandQuery = await db.getBrandNameById(modelQuery[0].brand_id);
   const model = modelQuery[0];
-  console.log(model);
   const brand_name = brandQuery[0].brand_name;
 
   res.render("form", {
@@ -208,8 +207,6 @@ exports.addItemIntoModel = [
     }
     const model_id = req.params.model_id;
     const modelQuery = await db.getModelById(model_id);
-    // const brandNameQuery = await db.getBrandNameById(modelQuery[0].brand_id);
-    // const brand_name = brandNameQuery[0].brand_name;
     const oem = req.body.oem ? true : false;
     const reqbody = {
       ...req.body,

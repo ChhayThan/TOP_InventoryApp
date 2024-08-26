@@ -26,14 +26,18 @@
         <% }) %> <% } else { %>
         <div class="empty">
           <p>No items available.</p>
-          <form action="/delete/model/<%=locals.model_id %>" method="POST">
+          <form
+            action="/delete/model/<%=locals.model_id %>"
+            method="POST"
+            class="deleteForm"
+          >
             <input
               type="password"
               name="adminPassword"
               id="adminPassword"
               placeholder="Admin Password"
             />
-            <button type="submit" class="deleteModelBtn">Delete Model</button>
+            <button type="submit" class="deleteBtn">Delete Model</button>
           </form>
         </div>
         <% } %>

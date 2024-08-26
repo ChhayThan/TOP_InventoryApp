@@ -167,6 +167,13 @@ async function deleteModelById(model_id) {
   return deleteResult;
 }
 
+async function deletePartById(part_id) {
+  const deleteResult = await pool.query("DELETE FROM car_parts WHERE id = $1", [
+    part_id,
+  ]);
+  return deleteResult;
+}
+
 async function addItemIntoModelById(model_id, reqbody) {
   const result = await pool.query(
     "INSERT INTO car_parts (part_name, part_imageurl, part_price, part_description, part_quantity, oem, model_id, brand_id) VALUES ($1, $2, $3, $4, $5, $6, $7, $8)",
@@ -203,5 +210,6 @@ module.exports = {
   addNewCarModel,
   deleteBrandById,
   deleteModelById,
+  deletePartById,
   addItemIntoModelById,
 };
