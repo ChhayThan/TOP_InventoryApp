@@ -108,7 +108,6 @@ exports.getPartById = async (req, res) => {
   let vehicleType_categories = await getVehicleTypesCategories();
   const itemQuery = await db.getPartById(req.params.part_id);
   const item = itemQuery[0];
-  console.log(item);
   const brandQuery = await db.getBrandNameById(item.brand_id);
 
   res.render("item", {
