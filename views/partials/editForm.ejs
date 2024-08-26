@@ -1,34 +1,47 @@
 <a href="/">Back Home</a>
-<form action="/form/edit/part/<%= item_info.id %>" method="POST">
+<form action="<%= locals.edit ? `/form/edit/part/${locals.item_info.id}` : `/form/${locals.model.id}/add/car_part` %>"
+  method="POST">
   <label for="part_name">
     Part Name:
     <input
       type="text"
       name="part_name"
       id="part_name"
-      value="<%= item_info.part_name %>"
+      value="<%= locals.item_info.part_name %>"
       required
     />
   </label>
   <label for="brand_id">
     Brand:
-    <select name="brand_id" id="brand_name">
+    <% if (locals.edit)  { %>
+      <select name="brand_id" id="brand_name">
       <% brand_categories.forEach((brand) => { %>
       <option value="<%= brand.brand_id %>"
-      <% if (item_info.brand_id === brand.brand_id) { %>
+      <% if (locals.item_info.brand_id === brand.brand_id) { %>
         selected
       <% } %>
       ><%= brand.brand_name %></option>
       <% }) %>
     </select>
+    <%} else { %>
+      <input type="text" name="brand_id" id="brand_id" value="<%= locals.brand_name %>" disabled>
+    <%}%>
+    
   </label>
   <label for="model_id">
     Model:
-    <select name="model_id" id="model_id">
+    <% if (locals.edit) { %>
+      <select name="model_id" id="model_id">
       <% model_names.forEach((model) => { %>
       <option value="<%= model.id %>"><%= model.model_name %></option>
       <% }) %>
     </select>
+    <% } else { %>
+      <select name="model_id" id="model_id" disabled>
+        <option value="<%= locals.model.id %>"><%= model.model_name %></option>
+      </select>
+    <%}%>
+    
   </label>
   <label for="part_imageUrl">
     Part Image-Url:
@@ -36,7 +49,7 @@
       type="url"
       name="part_imageUrl"
       id="part_imageUrl"
-      value="<%= item_info.part_imageurl %>"
+      value="<%= locals.item_info.part_imageurl %>"
       required
     />
   </label>
@@ -46,7 +59,7 @@
       type="number"
       name="part_price"
       id="part_price"
-      value="<%= item_info.part_price %>"
+      value="<%= locals.item_info.part_price %>"
       required
     />
   </label>
@@ -61,22 +74,25 @@
       type="number"
       name="part_quantity"
       id="part_quantity"
-      value="<%= item_info.part_quantity %>"
+      value="<%= locals.item_info.part_quantity %>"
       required
     />
   </label>
   <label for="part_oem">
     OEM:
     <input type="checkbox" name="part_oem" id="part_oem" 
-    <% if (item_info.oem) {%>
+    <% if (locals.item_info.oem) {%>
         checked="true"
     <%}%>
     />
   </label>
-  <label for="adminPassword">
+  <% if (locals.edit) { %>
+    <label for="adminPassword">
     Admin Password:
     <input type="password" name="adminPassword" id="adminPassword"/>
   </label>
+  <% } %>
+  
 
-  <button type="submit" id="editSubmitBtn">Confirm Edit</button>
+  <button type="submit" id="editSubmitBtn"><%= locals.edit ? "Confirm Edit" : "Add item" %></button>
 </form>

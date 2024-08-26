@@ -26,7 +26,6 @@
         <% }) %> <% } else { %>
         <div class="empty">
           <p>No items available.</p>
-          <a href="/form/add/car_models" class="addModel">Add Car Model</a>
           <form action="/delete/model/<%=locals.model_id %>" method="POST">
             <input
               type="password"
@@ -38,6 +37,9 @@
           </form>
         </div>
         <% } %>
+        <a href="/form/add/car_parts/<%= model_id %>" class="addPart"
+          >+ Car Part</a
+        >
       </div>
     </div>
   </body>

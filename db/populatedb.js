@@ -52,7 +52,8 @@ VALUES
   ('BMW M5 F90', 'https://www.bmw.co.za/content/dam/bmw/common/all-models/m-series/m5-sedan/2021/Overview/bmw-m5-cs-onepager-gallery-m5-core-02-wallpaper.jpg', 'Sedan', 1),
   ('Mercedes C63', 'https://www.mbusa.com/content/dam/mb-nafta/us/myco/my23/c/coupe/byo-options/2023-AMG-C-COUPE-MP-047.jpg', 'Sedan', 2),
   ('Mercedes GLC 300', 'https://www.mercedes-benz.com.au/content/dam/hq/passengercars/cars/glc/suv-x254/modeloverview/images/mercedes-benz-glc-suv-x254-modeloverview-696x392-05-2022.png', 'SUV', 2),
-  ('Ferrari SF90', 'https://vrrb-fsb-prod-backend.s3.us-west-1.amazonaws.com/strapi/SF_90_Stradale_Thumb_500a464bf7.png', 'Sports', 2);
+  ('Ferrari SF90', 'https://vrrb-fsb-prod-backend.s3.us-west-1.amazonaws.com/strapi/SF_90_Stradale_Thumb_500a464bf7.png', 'Sports', 2),
+  ('Ferrari LaFerrari (2013)', 'https://cdn.ferrari.com/cms/network/media/img/resize/5d961f5c230eb47c19f12b89-ferrari-laferrari-2013-carbanner-mobile?width=800&height=600', 'Sports', 2);
 
 INSERT INTO car_parts (part_name, part_imageUrl, part_price, part_description, part_quantity, oem, model_id, brand_id) 
 VALUES 

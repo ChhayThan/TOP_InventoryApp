@@ -167,6 +167,22 @@ async function deleteModelById(model_id) {
   return deleteResult;
 }
 
+async function addItemIntoModelById(model_id, reqbody) {
+  const result = await pool.query(
+    "INSERT INTO car_parts (part_name, part_imageurl, part_price, part_description, part_quantity, oem, model_id, brand_id) VALUES ($1, $2, $3, $4, $5, $6, $7, $8)",
+    [
+      reqbody.part_name,
+      reqbody.part_imageUrl,
+      reqbody.part_price,
+      reqbody.part_description,
+      reqbody.part_quantity,
+      reqbody.oem,
+      model_id,
+      reqbody.brand_id,
+    ]
+  );
+}
+
 module.exports = {
   getAdminInfo,
   getAllParts,
@@ -187,4 +203,5 @@ module.exports = {
   addNewCarModel,
   deleteBrandById,
   deleteModelById,
+  addItemIntoModelById,
 };

@@ -55,14 +55,16 @@ div.sidebarBtns {
   gap: 1em;
 }
 div.sidebarBtns a,
-a.addModel {
+a.addModel,
+a.addPart {
   background-color: #3895ff;
   padding: 10px;
   border-radius: 10px;
   color: white;
 }
 div.sidebarBtns a:hover,
-a.addModel:hover {
+a.addModel:hover,
+a.addPart:hover {
   background-color: #1868c4;
   transition: background-color ease 200ms;
 }
@@ -95,6 +97,7 @@ div.modelsContainer {
   display: flex;
   flex-wrap: wrap;
   gap: 1em;
+  align-items: center;
 }
 
 div.item,
