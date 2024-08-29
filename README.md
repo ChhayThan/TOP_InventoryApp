@@ -4,6 +4,8 @@
 
 ## A part of the odin project coursework
 
+![alt App preview](https://github.com/ChhayThan/TOP_InventoryApp/blob/main/public/images/app.png?raw=true)
+
 ### App Description:
 
 This is a CRUD Inventory app for car parts. Admin is able to create, remove, update, delete - car brands, models, parts for each models.
